@@ -1,7 +1,19 @@
-export function Word() {
+import { Word as WordType } from '../types';
+
+interface Props {
+	entry: WordType;
+}
+
+export function Word({ entry }: Props) {
+	const meanings = entry.meanings.map(meaning => {
+		return meaning.definitions.map(def => def.defintion);
+	});
+
 	return (
 		<div className='mt-5'>
-			<p>This is the word component.</p>
+			<p>{entry.word}</p>
+			<p>{entry.phonetics}</p>
+			{meanings}
 		</div>
 	);
 }

@@ -1,4 +1,4 @@
-export function SearchBar(props: React.InputHTMLAttributes<HTMLInputElement>) {
+export function SearchBar() {
 	return (
 		<>
 			<input
