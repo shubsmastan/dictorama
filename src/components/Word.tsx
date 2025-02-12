@@ -3,7 +3,7 @@ import { useStore } from '@tanstack/react-store';
 
 import { useFetchWord } from '../hooks/useFetchWord';
 import { Word as WordType } from '../types';
-import { store } from '../store';
+import { store, updateSearch } from '../store';
 import { Link } from './Link';
 
 export function Word() {
@@ -31,6 +31,8 @@ export function Word() {
 	// avoids needing to use "?" every time
 	if (!entry) return null;
 
+	const phonetics = entry.phonetics.length > 0 ? entry.phonetics[0].text : '';
+
 	const meanings = entry.meanings[0].definitions.map(def => (
 		<li key={def.definition} className='mb-1 md:mb-2 lg:mb-3'>
 			{def.definition}
@@ -43,7 +45,7 @@ export function Word() {
 		<div className='mt-5 p-5 rounded-md border-2 border-neutral-900 dark:border-neutral-100'>
 			<div className='mb-4 lg:mb-6'>
 				<h2 className='text-3xl font-bold lg:text-5xl'>{entry.word}</h2>
-				<p className='lg:text-xl'>{entry.phonetics[0].text}</p>
+				<p className='lg:text-xl'>{phonetics}</p>
 			</div>
 
 			<h2 className='font-bold mb-4 lg:text-xl lg:mb-6'>
@@ -59,10 +61,17 @@ export function Word() {
 				<h3 className='font-bold md:mb-2 lg:mb-3'>Synonyms:</h3>
 				{synonyms.map((synonym, i) => {
 					return (
-						<>
-							<Link href='#'>{synonym}</Link>
-							{i !== synonyms.length && <span>{', '}</span>}
-						</>
+						<span key={synonym}>
+							<Link
+								data-value={synonym}
+								// FIXME change this to href with updated URL params
+								onClick={() => {
+									updateSearch(synonym);
+								}}>
+								{synonym}
+							</Link>
+							{i !== synonyms.length - 1 && <span>{', '}</span>}
+						</span>
 					);
 				})}
 			</div>
