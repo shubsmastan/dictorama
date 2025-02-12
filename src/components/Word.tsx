@@ -25,13 +25,16 @@ export function Word() {
 		return <p>{error.message}</p>;
 	}
 
-	const meanings = entry?.meanings.map((meaning, i) => (
-		<p key={i}>{meaning.partOfSpeech}</p>
+	const phonetics = entry?.phonetics.map(p => <p>{p.text || 'no'}</p>);
+
+	const meanings = entry?.meanings[0].definitions.map(def => (
+		<p key={def.definition}>{def.definition}</p>
 	));
 
 	return (
 		<div className='mt-5'>
 			<p>{entry?.word}</p>
+			{phonetics}
 			{meanings}
 		</div>
 	);
