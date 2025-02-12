@@ -18,10 +18,12 @@ export function Word() {
 		console.log(data);
 	}, [data]);
 
+	// FIXME improve
 	if (isLoading) {
 		return <p>Loading</p>;
 	}
 
+	// FIXME improve
 	if (error) {
 		return <p>{error.message}</p>;
 	}
@@ -30,32 +32,35 @@ export function Word() {
 	if (!entry) return null;
 
 	const meanings = entry.meanings[0].definitions.map(def => (
-		<li key={def.definition}>{def.definition}</li>
+		<li key={def.definition} className='mb-1 md:mb-2 lg:mb-3'>
+			{def.definition}
+		</li>
 	));
 
 	const synonyms = entry.meanings[0].synonyms.join(', ');
 
 	return (
 		<div className='mt-5 p-5 rounded-md border-2 border-neutral-900 dark:border-neutral-100'>
-			<div className='mb-4'>
-				<h2 className='text-3xl font-bold'>{entry.word}</h2>
-				<p>{entry.phonetics[0].text}</p>
+			<div className='mb-4 lg:mb-6'>
+				<h2 className='text-3xl font-bold lg:text-5xl'>{entry.word}</h2>
+				<p className='lg:text-xl'>{entry.phonetics[0].text}</p>
 			</div>
 
-			<h2 className='font-bold mb-4'>{entry.meanings[0].partOfSpeech}</h2>
+			<h2 className='font-bold mb-4 lg:text-xl lg:mb-6'>
+				{entry.meanings[0].partOfSpeech}
+			</h2>
 
-			<div className='mb-4'>
-				<h3 className='font-bold'>Meanings:</h3>
-				{/* FIXME better styling */}
-				<ol className='list-decimal list-inside'>{meanings}</ol>
+			<div className='mb-4 lg:mb-6'>
+				<h3 className='font-bold mb-1 md:mb-2 lg:mb-3'>Meanings:</h3>
+				<ol className='pl-5 list-decimal list-outside'>{meanings}</ol>
 			</div>
 
-			<div className='mb-5 flex gap-2'>
+			<div className='mb-5 flex gap-2 lg:mb-8'>
 				<h3 className='font-bold'>Synonyms:</h3>
 				<p className='text-blue-700 dark:text-blue-300'>{synonyms}</p>
 			</div>
 
-			<div className='flex gap-2 py-2 text-gray-600 border-t-2 border-gray-600 dark:text-gray-400 dark:border-gray-400'>
+			<div className='flex flex-col py-2 text-gray-600 border-t-2 border-gray-600 sm:flex-row sm:gap-2 dark:text-gray-400 dark:border-gray-400'>
 				<h2 className='font-bold'>Source:</h2>
 				<Link
 					className='text-gray-600 underline hover:text-amber-700 dark:text-gray-400 dark:hover:text-amber-300'
