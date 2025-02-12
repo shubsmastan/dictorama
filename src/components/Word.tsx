@@ -28,14 +28,18 @@ export function Word() {
 
 	// FIXME improve
 	if (error) {
-		return <p>{error.message}</p>;
+		return (
+			<div className='mt-4 flex justify-center items-center'>
+				<p>{error.message}</p>
+			</div>
+		);
 	}
 
 	// avoids needing to use "?" every time
 	if (!entry)
 		return (
-			<div className='h-full flex justify-center items-center'>
-				<p>Type a word to see a definition.</p>
+			<div className='mt-4 flex justify-center items-center'>
+				<p>Type a word to search for a definition.</p>
 			</div>
 		);
 
