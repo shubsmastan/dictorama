@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react';
+import { CiSearch } from 'react-icons/ci';
+
 import { updateSearch } from '../store';
 
 export function SearchBar() {
@@ -24,13 +26,14 @@ export function SearchBar() {
 	}, [query]);
 
 	return (
-		<form onSubmit={handleSubmit}>
+		<form className='relative' onSubmit={handleSubmit}>
+			<CiSearch className='absolute py-2 text-[#8e8e8e]' size='40px' />
 			<input
 				type='text'
 				placeholder='Start typing a word'
 				value={query}
 				onChange={handleChangeSearch}
-				className='bg-gray-200 text-black p-2 rounded-md w-full'
+				className='bg-gray-200 text-black p-2 px-10 rounded-md w-full'
 			/>
 		</form>
 	);
