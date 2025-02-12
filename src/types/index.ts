@@ -1,6 +1,6 @@
 export interface Word {
 	word: string;
-	phonetic: Phonetics[];
+	phonetics: Phonetics[];
 	meanings: Meaning[];
 	sourceUrls: string;
 }
