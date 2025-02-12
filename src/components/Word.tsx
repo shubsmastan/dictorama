@@ -12,7 +12,7 @@ export function Word({ entry }: Props) {
 	return (
 		<div className='mt-5'>
 			<p>{entry.word}</p>
-			<p>{entry.phonetics}</p>
+			<p>{entry.phonetic}</p>
 			{meanings}
 		</div>
 	);

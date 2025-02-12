@@ -1,6 +1,6 @@
-export interface Word extends Record<string, unknown> {
+export interface Word {
 	word: string;
-	phonetics: string;
+	phonetic: string;
 	meanings: Meaning[];
 	sourceUrls: string;
 }
