@@ -35,19 +35,21 @@ export function Word() {
 	const synonyms = entry.meanings[0].synonyms.join(', ');
 
 	return (
-		<div className='mt-5'>
-			<p>{entry.word}</p>
+		<div className='mt-5 rounded-md p-3 border-2 border-neutral-900 dark:border-neutral-100'>
+			<h2>{entry.word}</h2>
 			<p>{entry.phonetics[0].text}</p>
-			{/* FIXME use a component */}
-			<p className='font-bold'>{entry.meanings[0].partOfSpeech}</p>
-			<p>Meanings</p>
+
+			<h2 className='font-bold'>{entry.meanings[0].partOfSpeech}</h2>
+
+			<h3>Meanings:</h3>
 			{/* FIXME better styling */}
 			<ol className='list-decimal list-inside'>{meanings}</ol>
 
-			<p>Synonyms</p>
-			{/* FIXME better styling */}
+			<h3>Synonyms:</h3>
 			<p>{synonyms}</p>
-			<a href={entry.sourceUrls} target='_blank'>
+
+			{/* FIXME use a component */}
+			<a className='' href={entry.sourceUrls} target='_blank'>
 				{entry.sourceUrls}
 			</a>
 		</div>
