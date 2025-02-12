@@ -8,6 +8,7 @@ interface Props {
 }
 
 export function useFetchWord({ search }: Props) {
+	console.log('hook called again');
 	const getWord = async () => {
 		try {
 			const { data } = await axios.get(
@@ -25,9 +26,10 @@ export function useFetchWord({ search }: Props) {
 	};
 
 	const { data, isLoading, isError, error } = useQuery({
-		queryKey: ['word'],
+		queryKey: [search],
 		queryFn: getWord,
 		retry: 1,
+		enabled: !!search,
 	});
 
 	return { data, isLoading, isError, error };

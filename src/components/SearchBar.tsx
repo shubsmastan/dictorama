@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
+import { updateSearch } from '../store';
 
 export function SearchBar() {
 	const [query, setQuery] = useState('');
-	const [debouncedQuery, setDebouncedQuery] = useState(query);
 
 	const handleChangeSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setQuery(e.target.value);
@@ -10,19 +10,13 @@ export function SearchBar() {
 
 	useEffect(() => {
 		const timer = setTimeout(() => {
-			setDebouncedQuery(query);
+			updateSearch(query);
 		}, 500);
 
 		return () => {
 			clearTimeout(timer);
 		};
 	}, [query]);
-
-	useEffect(() => {
-		if (debouncedQuery) {
-			console.log('Debounced query:', debouncedQuery);
-		}
-	}, [debouncedQuery]);
 
 	return (
 		<>
