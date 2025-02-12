@@ -36,17 +36,23 @@ export function Word() {
 
 	return (
 		<div className='mt-5 rounded-md p-3 border-2 border-neutral-900 dark:border-neutral-100'>
-			<h2>{entry.word}</h2>
-			<p>{entry.phonetics[0].text}</p>
+			<div className='mb-4'>
+				<h2 className='text-3xl font-bold'>{entry.word}</h2>
+				<p>{entry.phonetics[0].text}</p>
+			</div>
 
-			<h2 className='font-bold'>{entry.meanings[0].partOfSpeech}</h2>
+			<h2 className='font-bold mb-4'>{entry.meanings[0].partOfSpeech}</h2>
 
-			<h3>Meanings:</h3>
-			{/* FIXME better styling */}
-			<ol className='list-decimal list-inside'>{meanings}</ol>
+			<div className='mb-4'>
+				<h3 className='font-bold'>Meanings:</h3>
+				{/* FIXME better styling */}
+				<ol className='list-decimal list-inside'>{meanings}</ol>
+			</div>
 
-			<h3>Synonyms:</h3>
-			<p>{synonyms}</p>
+			<div className='mb-4 flex gap-3'>
+				<h3 className='font-bold'>Synonyms:</h3>
+				<p className='text-cyan-800 dark:text-cyan-200'>{synonyms}</p>
+			</div>
 
 			{/* FIXME use a component */}
 			<a className='' href={entry.sourceUrls} target='_blank'>
