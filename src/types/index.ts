@@ -16,7 +16,7 @@ interface Meaning {
 }
 
 interface Definition {
-	defintion: string;
+	definition: string;
 	example: string;
 	synonyms: string[];
 }
