@@ -37,7 +37,7 @@ export function Word() {
 		</li>
 	));
 
-	const synonyms = entry.meanings[0].synonyms.join(', ');
+	const synonyms = entry.meanings[0].synonyms;
 
 	return (
 		<div className='mt-5 p-5 rounded-md border-2 border-neutral-900 dark:border-neutral-100'>
@@ -55,9 +55,16 @@ export function Word() {
 				<ol className='pl-5 list-decimal list-outside'>{meanings}</ol>
 			</div>
 
-			<div className='mb-5 flex gap-2 lg:mb-8'>
-				<h3 className='font-bold'>Synonyms:</h3>
-				<p className='text-blue-700 dark:text-blue-300'>{synonyms}</p>
+			<div className='mb-5 lg:mb-8'>
+				<h3 className='font-bold md:mb-2 lg:mb-3'>Synonyms:</h3>
+				{synonyms.map((synonym, i) => {
+					return (
+						<>
+							<Link href='#'>{synonym}</Link>
+							{i !== synonyms.length && <span>{', '}</span>}
+						</>
+					);
+				})}
 			</div>
 
 			<div className='flex flex-col py-2 text-gray-600 border-t-2 border-gray-600 sm:flex-row sm:gap-2 dark:text-gray-400 dark:border-gray-400'>
