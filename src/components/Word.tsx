@@ -19,8 +19,12 @@ export function Word() {
 	}, [data]);
 
 	// FIXME improve
-	if (isLoading) {
-		return <p>Loading</p>;
+	if (!isLoading) {
+		return (
+			<div className='h-full flex justify-center items-center'>
+				<p>Loading</p>
+			</div>
+		);
 	}
 
 	// FIXME improve
@@ -57,7 +61,7 @@ export function Word() {
 	});
 
 	return (
-		<div className='mt-5 p-5 rounded-md border-2 border-neutral-900 dark:border-neutral-100'>
+		<section className='mt-5 p-5 rounded-md border-2 border-neutral-900 dark:border-neutral-100'>
 			<div className='mb-4 lg:mb-6'>
 				<h2 className='text-3xl font-bold lg:text-5xl'>{entry.word}</h2>
 				<p className='lg:text-xl'>{phonetics}</p>
@@ -86,6 +90,6 @@ export function Word() {
 					{entry.sourceUrls}
 				</Link>
 			</div>
-		</div>
+		</section>
 	);
 }
