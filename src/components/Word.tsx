@@ -13,11 +13,14 @@ export function Word() {
 
 	const { data, isLoading, error } = useFetchWord({ search });
 
+	const handleClickSynonym = (synonym: string) => {
+		updateSearch(synonym);
+	};
+
 	useEffect(() => {
 		if (data && data.length > 0) setEntry(data[0]);
 	}, [data]);
 
-	// FIXME improve
 	if (isLoading) {
 		return (
 			<div className='h-full flex justify-center items-center'>
@@ -26,7 +29,6 @@ export function Word() {
 		);
 	}
 
-	// FIXME improve
 	if (error) {
 		return (
 			<div className='mt-4 flex justify-center items-center'>
@@ -35,7 +37,6 @@ export function Word() {
 		);
 	}
 
-	// avoids needing to use "?" every time
 	if (!entry)
 		return (
 			<div className='mt-4 flex justify-center items-center'>
@@ -59,7 +60,7 @@ export function Word() {
 					data-value={synonym}
 					// FIXME change this to href with updated URL params
 					onClick={() => {
-						updateSearch(synonym);
+						handleClickSynonym(synonym);
 					}}>
 					{synonym}
 				</Link>
