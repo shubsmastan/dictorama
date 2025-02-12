@@ -15,7 +15,6 @@ export function Word() {
 
 	useEffect(() => {
 		if (data && data.length > 0) setEntry(data[0]);
-		console.log(data);
 	}, [data]);
 
 	// FIXME improve

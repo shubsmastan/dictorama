@@ -8,7 +8,6 @@ interface Props {
 }
 
 export function useFetchWord({ search }: Props) {
-	console.log('hook called again');
 	const getWord = async () => {
 		try {
 			const { data } = await axios.get(
