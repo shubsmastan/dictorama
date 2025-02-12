@@ -39,7 +39,22 @@ export function Word() {
 		</li>
 	));
 
-	const synonyms = entry.meanings[0].synonyms;
+	const synonyms = entry.meanings[0].synonyms.map((synonym, i) => {
+		const length = entry.meanings[0].synonyms.length;
+		return (
+			<span key={synonym}>
+				<Link
+					data-value={synonym}
+					// FIXME change this to href with updated URL params
+					onClick={() => {
+						updateSearch(synonym);
+					}}>
+					{synonym}
+				</Link>
+				{i !== length - 1 && <span>{', '}</span>}
+			</span>
+		);
+	});
 
 	return (
 		<div className='mt-5 p-5 rounded-md border-2 border-neutral-900 dark:border-neutral-100'>
@@ -59,21 +74,7 @@ export function Word() {
 
 			<div className='mb-5 lg:mb-8'>
 				<h3 className='font-bold md:mb-2 lg:mb-3'>Synonyms:</h3>
-				{synonyms.map((synonym, i) => {
-					return (
-						<span key={synonym}>
-							<Link
-								data-value={synonym}
-								// FIXME change this to href with updated URL params
-								onClick={() => {
-									updateSearch(synonym);
-								}}>
-								{synonym}
-							</Link>
-							{i !== synonyms.length - 1 && <span>{', '}</span>}
-						</span>
-					);
-				})}
+				<div>{synonyms}</div>
 			</div>
 
 			<div className='flex flex-col py-2 text-gray-600 border-t-2 border-gray-600 sm:flex-row sm:gap-2 dark:text-gray-400 dark:border-gray-400'>
