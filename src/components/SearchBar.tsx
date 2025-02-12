@@ -8,6 +8,11 @@ export function SearchBar() {
 		setQuery(e.target.value);
 	};
 
+	const handleSubmit = (e: React.ChangeEvent<HTMLFormElement>) => {
+		e.preventDefault();
+		updateSearch(query);
+	};
+
 	useEffect(() => {
 		const timer = setTimeout(() => {
 			updateSearch(query);
@@ -19,7 +24,7 @@ export function SearchBar() {
 	}, [query]);
 
 	return (
-		<>
+		<form onSubmit={handleSubmit}>
 			<input
 				type='text'
 				placeholder='Start typing a word'
@@ -27,6 +32,6 @@ export function SearchBar() {
 				onChange={handleChangeSearch}
 				className='bg-gray-200 text-black p-2 rounded-md w-full'
 			/>
-		</>
+		</form>
 	);
 }

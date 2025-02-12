@@ -19,10 +19,10 @@ export function Word() {
 	}, [data]);
 
 	// FIXME improve
-	if (!isLoading) {
+	if (isLoading) {
 		return (
 			<div className='h-full flex justify-center items-center'>
-				<p>Loading</p>
+				<p>Loading...</p>
 			</div>
 		);
 	}
@@ -33,7 +33,12 @@ export function Word() {
 	}
 
 	// avoids needing to use "?" every time
-	if (!entry) return null;
+	if (!entry)
+		return (
+			<div className='h-full flex justify-center items-center'>
+				<p>Type a word to see a definition.</p>
+			</div>
+		);
 
 	const phonetics = entry.phonetics.length > 0 ? entry.phonetics[0].text : '';
 
