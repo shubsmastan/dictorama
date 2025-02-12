@@ -3,11 +3,15 @@ import axios from 'axios';
 
 import { Word } from '../types';
 
-export function useFetchWord() {
+interface Props {
+	search: string;
+}
+
+export function useFetchWord({ search }: Props) {
 	const getWord = async () => {
 		try {
 			const { data } = await axios.get(
-				'https://api.dictionaryapi.dev/api/v2/entries/en/hello'
+				`https://api.dictionaryapi.dev/api/v2/entries/en/${search}`
 			);
 
 			return data as Word[];

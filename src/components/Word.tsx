@@ -5,7 +5,7 @@ import { Word as WordType } from '../types';
 export function Word() {
 	const [entry, setEntry] = useState<WordType>();
 
-	const { data, isLoading, error } = useFetchWord();
+	const { data, isLoading, error } = useFetchWord({ search: 'hello' });
 
 	useEffect(() => {
 		if (data && data.length > 0) setEntry(data[0]);
@@ -19,7 +19,6 @@ export function Word() {
 		return <p>{error.message}</p>;
 	}
 
-	console.log(entry);
 	const meanings = entry?.meanings.map((meaning, i) => (
 		<p key={i}>{meaning.partOfSpeech}</p>
 	));
