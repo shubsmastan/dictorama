@@ -25,17 +25,31 @@ export function Word() {
 		return <p>{error.message}</p>;
 	}
 
-	const phonetics = entry?.phonetics.map(p => <p>{p.text || 'no'}</p>);
+	// avoids needing to use "?" every time
+	if (!entry) return null;
 
-	const meanings = entry?.meanings[0].definitions.map(def => (
-		<p key={def.definition}>{def.definition}</p>
+	const meanings = entry.meanings[0].definitions.map(def => (
+		<li key={def.definition}>{def.definition}</li>
 	));
+
+	const synonyms = entry.meanings[0].synonyms.join(', ');
 
 	return (
 		<div className='mt-5'>
-			<p>{entry?.word}</p>
-			{phonetics}
-			{meanings}
+			<p>{entry.word}</p>
+			<p>{entry.phonetics[0].text}</p>
+			{/* FIXME use a component */}
+			<p className='font-bold'>{entry.meanings[0].partOfSpeech}</p>
+			<p>Meanings</p>
+			{/* FIXME better styling */}
+			<ol className='list-decimal list-inside'>{meanings}</ol>
+
+			<p>Synonyms</p>
+			{/* FIXME better styling */}
+			<p>{synonyms}</p>
+			<a href={entry.sourceUrls} target='_blank'>
+				{entry.sourceUrls}
+			</a>
 		</div>
 	);
 }

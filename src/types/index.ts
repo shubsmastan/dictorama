@@ -13,10 +13,10 @@ interface Phonetics {
 interface Meaning {
 	partOfSpeech: string;
 	definitions: Definition[];
+	synonyms: string[];
 }
 
 interface Definition {
 	definition: string;
 	example: string;
-	synonyms: string[];
 }
