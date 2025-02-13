@@ -83,7 +83,7 @@ export function Word() {
 			<div className='flex flex-col py-2 text-gray-600 border-t-2 border-gray-600 sm:flex-row sm:gap-2 dark:text-gray-400 dark:border-gray-400'>
 				<h2 className='font-bold'>Source:</h2>
 				<a
-					className='text-gray-600 underline hover:text-amber-700 dark:text-gray-400 dark:hover:text-amber-300'
+					className='text-gray-600 underline truncate hover:text-amber-700 dark:text-gray-400 dark:hover:text-amber-300'
 					href={entry.sourceUrls}
 					target='_blank'>
 					{entry.sourceUrls}
