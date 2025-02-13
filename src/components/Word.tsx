@@ -58,7 +58,7 @@ export function Word() {
 	const synonyms = entry.meanings[0].synonyms.map((synonym, i) => {
 		const length = entry.meanings[0].synonyms.length;
 		return (
-			<span key={synonym}>
+			<span key={synonym + i}>
 				<StyledLink
 					// FIXME change this to href with updated URL params
 					// onClick={() => {
