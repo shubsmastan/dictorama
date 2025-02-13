@@ -20,7 +20,7 @@ export function Word() {
 
 	if (isLoading) {
 		return (
-			<div className='h-full flex justify-center items-center'>
+			<div className='mt-4 flex justify-center items-center'>
 				<CgSpinnerTwoAlt className='animate-spin' size='30px' />
 			</div>
 		);

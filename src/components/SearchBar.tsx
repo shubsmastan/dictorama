@@ -23,14 +23,18 @@ export function SearchBar() {
 	};
 
 	useEffect(() => {
+		setQuery(param || '');
+	}, [param]);
+
+	useEffect(() => {
 		const timer = setTimeout(() => {
-			updateSearch(param || '');
+			updateSearch(query);
 		}, 500);
 
 		return () => {
 			clearTimeout(timer);
 		};
-	}, [param]);
+	}, [query]);
 
 	return (
 		<form className='relative' onSubmit={handleSubmit}>
