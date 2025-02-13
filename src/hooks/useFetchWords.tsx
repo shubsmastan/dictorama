@@ -7,7 +7,7 @@ interface Props {
 	search: string;
 }
 
-export function useFetchWord({ search }: Props) {
+export function useFetchWords({ search }: Props) {
 	const getWord = async () => {
 		try {
 			const { data } = await axios.get(

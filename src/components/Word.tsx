@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useStore } from '@tanstack/react-store';
 
-import { useFetchWord } from '../hooks/useFetchWord';
+import { useFetchWords } from '../hooks/useFetchWords';
 import { Word as WordType } from '../types';
 import { store } from '../store';
 import { StyledLink } from './Link';
@@ -12,7 +12,7 @@ export function Word() {
 
 	const search = useStore(store, state => state.search);
 
-	const { data, isLoading, error } = useFetchWord({ search });
+	const { data, isLoading, error } = useFetchWords({ search });
 
 	useEffect(() => {
 		if (data && data.length > 0) setEntry(data[0]);
