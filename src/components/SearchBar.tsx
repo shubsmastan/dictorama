@@ -40,7 +40,7 @@ export function SearchBar() {
 				placeholder='Start typing a word'
 				value={query}
 				onChange={handleChangeSearch}
-				className='bg-gray-200 text-black p-2 px-10 rounded-md w-full'
+				className='border-[1px] border-black bg-gray-200 text-black p-2 px-10 rounded-md w-full dark:border-transparent'
 			/>
 		</form>
 	);
