@@ -3,8 +3,11 @@ import { useStore } from '@tanstack/react-store';
 
 import { useFetchWord } from '../hooks/useFetchWord';
 import { Word as WordType } from '../types';
-import { store, updateSearch } from '../store';
-import { Link } from './Link';
+import {
+	store,
+	// updateSearch
+} from '../store';
+import { StyledLink } from './Link';
 
 export function Word() {
 	const [entry, setEntry] = useState<WordType>();
@@ -13,9 +16,9 @@ export function Word() {
 
 	const { data, isLoading, error } = useFetchWord({ search });
 
-	const handleClickSynonym = (synonym: string) => {
-		updateSearch(synonym);
-	};
+	// const handleClickSynonym = (synonym: string) => {
+	// 	updateSearch(synonym);
+	// };
 
 	useEffect(() => {
 		if (data && data.length > 0) setEntry(data[0]);
@@ -56,14 +59,14 @@ export function Word() {
 		const length = entry.meanings[0].synonyms.length;
 		return (
 			<span key={synonym}>
-				<Link
-					data-value={synonym}
+				<StyledLink
 					// FIXME change this to href with updated URL params
-					onClick={() => {
-						handleClickSynonym(synonym);
-					}}>
+					// onClick={() => {
+					// 	handleClickSynonym(synonym);
+					// }}
+					to={`/?search=${synonym}`}>
 					{synonym}
-				</Link>
+				</StyledLink>
 				{i !== length - 1 && <span>{', '}</span>}
 			</span>
 		);
@@ -92,12 +95,12 @@ export function Word() {
 
 			<div className='flex flex-col py-2 text-gray-600 border-t-2 border-gray-600 sm:flex-row sm:gap-2 dark:text-gray-400 dark:border-gray-400'>
 				<h2 className='font-bold'>Source:</h2>
-				<Link
+				<a
 					className='text-gray-600 underline hover:text-amber-700 dark:text-gray-400 dark:hover:text-amber-300'
 					href={entry.sourceUrls}
 					target='_blank'>
 					{entry.sourceUrls}
-				</Link>
+				</a>
 			</div>
 		</section>
 	);

@@ -1,29 +1,36 @@
 import { useEffect, useState } from 'react';
+import { useSearchParams } from 'react-router';
+
 import { CiSearch } from 'react-icons/ci';
 
 import { updateSearch } from '../store';
 
 export function SearchBar() {
+	const [searchParams, setSearchParams] = useSearchParams();
 	const [query, setQuery] = useState('');
+
+	const param = searchParams.get('search');
 
 	const handleChangeSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setQuery(e.target.value);
+		setSearchParams({ search: e.target.value });
 	};
 
 	const handleSubmit = (e: React.ChangeEvent<HTMLFormElement>) => {
 		e.preventDefault();
 		updateSearch(query);
+		setSearchParams({ search: query });
 	};
 
 	useEffect(() => {
 		const timer = setTimeout(() => {
-			updateSearch(query);
+			updateSearch(param || '');
 		}, 500);
 
 		return () => {
 			clearTimeout(timer);
 		};
-	}, [query]);
+	}, [param]);
 
 	return (
 		<form className='relative' onSubmit={handleSubmit}>
