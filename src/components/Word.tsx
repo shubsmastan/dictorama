@@ -3,11 +3,9 @@ import { useStore } from '@tanstack/react-store';
 
 import { useFetchWord } from '../hooks/useFetchWord';
 import { Word as WordType } from '../types';
-import {
-	store,
-	// updateSearch
-} from '../store';
+import { store } from '../store';
 import { StyledLink } from './Link';
+import { CgSpinnerTwoAlt } from 'react-icons/cg';
 
 export function Word() {
 	const [entry, setEntry] = useState<WordType>();
@@ -16,10 +14,6 @@ export function Word() {
 
 	const { data, isLoading, error } = useFetchWord({ search });
 
-	// const handleClickSynonym = (synonym: string) => {
-	// 	updateSearch(synonym);
-	// };
-
 	useEffect(() => {
 		if (data && data.length > 0) setEntry(data[0]);
 	}, [data]);
@@ -27,7 +21,7 @@ export function Word() {
 	if (isLoading) {
 		return (
 			<div className='h-full flex justify-center items-center'>
-				<p>Loading...</p>
+				<CgSpinnerTwoAlt className='animate-spin' size='30px' />
 			</div>
 		);
 	}
@@ -59,14 +53,7 @@ export function Word() {
 		const length = entry.meanings[0].synonyms.length;
 		return (
 			<span key={synonym + i}>
-				<StyledLink
-					// FIXME change this to href with updated URL params
-					// onClick={() => {
-					// 	handleClickSynonym(synonym);
-					// }}
-					to={`/?search=${synonym}`}>
-					{synonym}
-				</StyledLink>
+				<StyledLink to={`/?search=${synonym}`}>{synonym}</StyledLink>
 				{i !== length - 1 && <span>{', '}</span>}
 			</span>
 		);
