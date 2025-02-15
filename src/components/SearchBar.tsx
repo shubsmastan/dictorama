@@ -13,13 +13,11 @@ export function SearchBar() {
 
 	const handleChangeSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setQuery(e.target.value);
-		setSearchParams({ search: e.target.value });
 	};
 
 	const handleSubmit = (e: React.ChangeEvent<HTMLFormElement>) => {
 		e.preventDefault();
 		updateSearch(query);
-		setSearchParams({ search: query });
 	};
 
 	useEffect(() => {
@@ -29,6 +27,7 @@ export function SearchBar() {
 	useEffect(() => {
 		const timer = setTimeout(() => {
 			updateSearch(query);
+			setSearchParams({ search: query });
 		}, 500);
 
 		return () => {
